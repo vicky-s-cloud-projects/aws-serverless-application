@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Env
+.env
+.env.*
+
+# React
+frontend/frontend/build/
+
+# Lambda zips
+backend_lambda/**/**/*.zip
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+# OS
+.DS_Store
+
+backend/ 
