@@ -43,7 +43,7 @@ function Dashboard() {
 
   const fetchUserEvents = async (token) => {
     try {
-      const response = await fetch("https://ticket-a8ez.onrender.com/event", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/event`, {
         headers: {
           Authorization: `${token}`,
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ function Dashboard() {
 
   const fetchUserData = async (token) => {
     try {
-      const response = await fetch("https://ticket-a8ez.onrender.com/user", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `${token}`,
@@ -83,7 +83,7 @@ function Dashboard() {
 
   const fetchScheduledEvents = async (token) => {
     try {
-      const response = await fetch("https://ticket-a8ez.onrender.com/ticket/user", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/ticket/user`, {
         headers: {
           Authorization: `${token}`,
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ function Dashboard() {
   const handleSaveClick = async () => {
     try {
       const response = await fetch(
-        `https://ticket-a8ez.onrender.com/event/${editingEvent._id}`,
+        `${process.env.REACT_APP_API_URL}/event/${editingEvent._id}`,
         {
           method: "PUT",
           headers: {
@@ -154,7 +154,7 @@ function Dashboard() {
 
   const handleDeleteClick = async (eventId) => {
     try {
-      const response = await fetch(`https://ticket-a8ez.onrender.com/event/${eventId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/event/${eventId}`, {
         method: "DELETE",
         headers: {
           Authorization: `${token}`,
@@ -177,7 +177,7 @@ function Dashboard() {
 
   const handleCancelEventClick = async (eventId) => {
     try {
-      const response = await fetch(`https://ticket-a8ez.onrender.com/ticket/${eventId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/ticket/${eventId}`, {
         method: "DELETE",
         headers: {
           Authorization: `${token}`,

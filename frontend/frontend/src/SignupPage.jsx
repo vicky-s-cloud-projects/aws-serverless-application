@@ -14,7 +14,7 @@ function SignupPage() {
         try {
             setIsLoading(true);
     
-            const response = await fetch('https://ticket-a8ez.onrender.com/user/register', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

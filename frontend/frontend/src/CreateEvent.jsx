@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./CreateEvent.css";
 import { Link } from "react-router-dom";
 
+
+
 function CreateEvent() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -18,7 +20,7 @@ function CreateEvent() {
     try {
       setIsLoading(true);
 
-      const response = await fetch("https://ticket-a8ez.onrender.com/event/create", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/event/create`, {
         method: "POST",
         headers: {
           Authorization: `${token}`,
