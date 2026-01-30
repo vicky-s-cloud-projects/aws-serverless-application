@@ -28,3 +28,13 @@ resource "aws_lambda_function" "events" {
   source_code_hash = filebase64sha256("../backend_lambda/events/events.zip")
 }
 
+resource "aws_lambda_function" "create_event" {
+  function_name = "create-event"
+  role          = aws_iam_role.lambda_role.arn
+  handler       = "index.handler"
+  runtime       = var.lambda_runtime
+
+  filename         = "../backend_lambda/create_event/create-event.zip"
+  source_code_hash = filebase64sha256("../backend_lambda/create_event/create-event.zip")
+}
+

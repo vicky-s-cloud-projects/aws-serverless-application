@@ -92,3 +92,30 @@ resource "aws_lambda_permission" "events_api_permission" {
   source_arn    = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
 }
 
+resource "aws_apigatewayv2_integration" "create_event" {
+  api_id             = aws_apigatewayv2_api.api.id
+  integration_type   = "AWS_PROXY"
+  integration_uri    = aws_lambda_function.create_event.invoke_arn
+  integration_method = "POST"
+}
+
+resource "aws_apigatewayv2_route" "create_event" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "POST /event/create"
+  target    = "integrations/${aws_apigatewayv2_integration.create_event.id}"
+}
+
+resource "aws_apigatewayv2_route" "create_event_options" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "OPTIONS /event/create"
+  target    = "integrations/${aws_apigatewayv2_integration.create_event.id}"
+}
+
+resource "aws_lambda_permission" "create_event_api" {
+  statement_id  = "AllowCreateEventInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.create_event.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+}
+
