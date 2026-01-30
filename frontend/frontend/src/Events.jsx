@@ -36,12 +36,9 @@ function Events() {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/event/all`, {
-        headers: {
-          Authorization: `${token}`, // Include the authentication token
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/events`
+      );
 
       if (response.ok) {
         const data = await response.json();

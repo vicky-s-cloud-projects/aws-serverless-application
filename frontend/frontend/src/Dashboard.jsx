@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import UserProfileModel from "./UserProfileModel";
 
 function Dashboard() {
-  const [userData, setUserData] = useState({});
+  //const [userData, setUserData] = useState({});
   const [userEvents, setUserEvents] = useState([]);
-  const [scheduledEvents, setScheduledEvents] = useState([]);
+  //const [scheduledEvents, setScheduledEvents] = useState([]);
   const [showUserProfileModal, setShowUserProfileModal] = useState(false);
   const [user, setUser] = useState();
   const token = localStorage.getItem("token");
@@ -26,42 +26,33 @@ function Dashboard() {
   };
 
 
-  useEffect(() => {
-    if (token) {
-      fetchUserData(token);
+ useEffect(() => {
+  fetchUserEvents();
+ }, []);
 
-      fetchUserEvents(token);
-
-      fetchScheduledEvents(token);
-    }
-  }, [token]);
 
   function formatDate(dateString) {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
-  const fetchUserEvents = async (token) => {
+  const fetchUserEvents = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/event`, {
-        headers: {
-          Authorization: `${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/events`);
 
       if (response.ok) {
         const data = await response.json();
-        setUserEvents(data.userEvents);
+        setUserEvents(data);
       } else {
-        console.error("Failed to fetch user events.");
+        console.error("Failed to fetch events.");
       }
     } catch (error) {
-      console.error("Error during fetchUserEvents:", error);
+      console.error("Error fetching events:", error);
     }
   };
 
-  const fetchUserData = async (token) => {
+
+  /*const fetchUserData = async (token) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/user`, {
         headers: {
@@ -79,9 +70,9 @@ function Dashboard() {
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
-  };
+  }; */
 
-  const fetchScheduledEvents = async (token) => {
+  /*const fetchScheduledEvents = async (token) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/ticket/user`, {
         headers: {
@@ -99,7 +90,7 @@ function Dashboard() {
     } catch (error) {
       console.error("Error fetching scheduled events:", error);
     }
-  };
+  }; */
 
   const handleEditClick = (event) => {
     setEditingEvent(event);
@@ -119,7 +110,7 @@ function Dashboard() {
     });
   };
 
-  const handleSaveClick = async () => {
+  /*const handleSaveClick = async () => {
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/event/${editingEvent._id}`,
@@ -150,9 +141,9 @@ function Dashboard() {
     } catch (error) {
       console.error("Error during event update:", error);
     }
-  };
+  }; */
 
-  const handleDeleteClick = async (eventId) => {
+  /*const handleDeleteClick = async (eventId) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/event/${eventId}`, {
         method: "DELETE",
@@ -173,9 +164,9 @@ function Dashboard() {
     } catch (error) {
       console.error("Error during event deletion:", error);
     }
-  };
+  }; */
 
-  const handleCancelEventClick = async (eventId) => {
+  /*const handleCancelEventClick = async (eventId) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/ticket/${eventId}`, {
         method: "DELETE",
@@ -196,7 +187,7 @@ function Dashboard() {
     } catch (error) {
       console.error("Error during event cancellation:", error);
     }
-  };
+  }; */
 
   return (
     <div className="dashboard">
@@ -218,7 +209,7 @@ function Dashboard() {
         
             <button onClick={openUserProfileModal} className="profile-button">My Profile</button>
 
-          <span>{userData.name}</span>
+          {/*<span>{userData.name}</span>*/}
         </div>
       </nav>
 
@@ -260,7 +251,7 @@ function Dashboard() {
                         handleFieldChange("venue", e.target.value)
                       }
                     />
-                    <button onClick={handleSaveClick}>Save</button>
+                    {/*<button onClick={handleSaveClick}>Save</button>*/}
                   </>
                 ) : (
                   <>
@@ -281,12 +272,12 @@ function Dashboard() {
                       <button
                         className="Edit"
                         onClick={() => handleEditClick(event)}
-                      >
+                      > 
                         Edit
                       </button>
                       <button
                         className="Delete"
-                        onClick={() => handleDeleteClick(event._id)}
+                        /*onClick={() => handleDeleteClick(event._id)}*/
                       >
                         Delete
                       </button>
@@ -298,7 +289,7 @@ function Dashboard() {
           )}
         </div>
 
-        <div className="right-div">
+        {/*<div className="right-div">
           <h1>My Scheduled Events</h1>
           {scheduledEvents.length === 0 ? (
             <p>No scheduled events available.</p>
@@ -321,7 +312,7 @@ function Dashboard() {
                 </button>
               </div>
             ))
-          )}
+          )} 
 
           {showUserProfileModal && (
         <UserProfileModel
@@ -329,7 +320,7 @@ function Dashboard() {
           onClose={closeUserProfileModal}
         />
       )}
-        </div>
+        </div> */}
       </div>
       
     </div>
