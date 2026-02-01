@@ -36,17 +36,38 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      # 5️ Terraform Init
+      # 5 Build Lambda packages
+      - name: Build Lambda packages
+        run: |
+          cd backend_lambda/signup
+          npm install
+          zip -r signup.zip index.js node_modules package.json
+
+          cd ../login
+          npm install
+          zip -r login.zip index.js node_modules package.json
+
+          cd ../events
+          npm install
+          zip -r events.zip index.js node_modules package.json
+
+          cd ../create_event
+          npm install
+          zip -r create-event.zip index.js node_modules package.json
+
+          cd ../../
+
+      # 6 Terraform Init
       - name: Terraform Init
         working-directory: terraform
         run: terraform init
 
-      # 6️ Terraform Plan
+      # 7 Terraform Plan
       - name: Terraform Plan
         working-directory: terraform
         run: terraform plan
 
-      # 7️ Terraform Apply (only on main)
+      # 8 Terraform Apply (only on main)
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: terraform
