@@ -71,7 +71,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
 
-      # 8 Terraform Apply (only on main)
+      # 8 Terraform Apply 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: terraform
@@ -80,4 +80,27 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
+
+      
+      - name: Build React frontend
+        run: |
+          cd frontend/frontend
+          npm install
+          npm run build
+          cd ../../
+
+      - name: Upload frontend to S3
+        run: |
+          aws s3 sync frontend/frontend/build s3://ticket-booking-serverless-frontend --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          DISTRIBUTION_ID=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?Origins.Items[0].DomainName=='ticket-booking-serverless-frontend.s3.amazonaws.com'].Id" \
+            --output text)
+
+          aws cloudfront create-invalidation \
+            --distribution-id $DISTRIBUTION_ID \
+            --paths "/*"
+
         
