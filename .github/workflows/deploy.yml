@@ -88,14 +88,20 @@ jobs:
           cd terraform
           echo "CF_ID=$(terraform output -raw cloudfront_distribution_id)" >> $GITHUB_ENV
           cd ..
-
-
+       
       
+      - name: Get API Gateway URL
+        run: |
+          cd terraform
+          echo "REACT_APP_API_URL=$(terraform output -raw api_url)" >> $GITHUB_ENV
+          cd ..
+
+
       - name: Build React frontend
         run: |
           cd frontend/frontend
           npm install
-          CI=false npm run build
+          REACT_APP_API_URL=$REACT_APP_API_URL CI=false npm run build
           cd ../../
 
       - name: Upload frontend to S3
