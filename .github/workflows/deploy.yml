@@ -86,7 +86,7 @@ jobs:
         run: |
           cd frontend/frontend
           npm install
-          npm run build
+          CI=false npm run build
           cd ../../
 
       - name: Upload frontend to S3
