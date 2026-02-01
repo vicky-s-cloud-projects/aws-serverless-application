@@ -81,6 +81,15 @@ jobs:
         working-directory: terraform
         run: terraform apply -auto-approve
 
+
+      - name: Get CloudFront Distribution ID
+        id: tfoutput
+        run: |
+          cd terraform
+          echo "CF_ID=$(terraform output -raw cloudfront_distribution_id)" >> $GITHUB_ENV
+          cd ..
+
+
       
       - name: Build React frontend
         run: |
@@ -95,12 +104,8 @@ jobs:
 
       - name: Invalidate CloudFront cache
         run: |
-          DISTRIBUTION_ID=$(aws cloudfront list-distributions \
-            --query "DistributionList.Items[?Origins.Items[0].DomainName=='ticket-booking-serverless-frontend.s3.amazonaws.com'].Id" \
-            --output text)
-
           aws cloudfront create-invalidation \
-            --distribution-id $DISTRIBUTION_ID \
+            --distribution-id $CF_ID \
             --paths "/*"
 
         
