@@ -33,7 +33,7 @@ DynamoDB (users + events tables)
 
 ---
 
-## ☁️ AWS Services Used
+## AWS Services Used
 
 - Amazon S3 – Frontend hosting  
 - Amazon CloudFront – CDN + HTTPS  
@@ -46,23 +46,23 @@ DynamoDB (users + events tables)
 
 ---
 
-## ❓ Why Serverless?
+## Why Serverless?
 
 Serverless was chosen because:
 
-### ✅ No server management
+### No server management
 No EC2 instances, no patching, no scaling concerns.
 
-### ✅ Automatic scaling
+### Automatic scaling
 Lambda scales automatically based on demand.
 
-### ✅ Pay-per-use model
+### Pay-per-use model
 Only pay when functions are invoked.
 
-### ✅ Highly available by default
+### Highly available by default
 AWS manages availability zones and redundancy.
 
-### ✅ Faster development
+### Faster development
 Focus stays on application logic instead of infrastructure.
 
 This architecture mirrors what many modern startups and SaaS platforms use for MVPs and lightweight production systems.
