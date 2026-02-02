@@ -186,6 +186,49 @@ Benefits:
 
 ---
 
+## Application Screenshots 
+
+### Signup Page
+<img width="1909" height="1044" alt="Screenshot (41)" src="https://github.com/user-attachments/assets/66cc6560-9587-45b6-9f90-4b94d1b51ba4" />
+
+### Login Page
+<img width="1906" height="993" alt="Screenshot (42)" src="https://github.com/user-attachments/assets/7e2eccf5-c697-4635-b1fd-59eb696064a1" />
+
+### Dashboard
+<img width="1917" height="966" alt="Screenshot (43)" src="https://github.com/user-attachments/assets/59b51131-9adc-41ff-ac4a-383b924cc13f" />
+
+### Create Event
+<img width="1913" height="976" alt="Screenshot (44)" src="https://github.com/user-attachments/assets/4089d320-1278-4eed-91d3-96b29730c2f2" />
+
+### Events Listing
+<img width="1920" height="971" alt="Screenshot (45)" src="https://github.com/user-attachments/assets/f1c4aa71-961f-4922-bb40-2f236ec609fa" />
+
+### CI/CD Pipeline with Github Actions
+<img width="1920" height="983" alt="Screenshot (46)" src="https://github.com/user-attachments/assets/493bdb58-cb03-4f43-a025-2a87631bafe4" />
+
+### AWS Lambda Funtions
+<img width="1920" height="972" alt="Screenshot (47)" src="https://github.com/user-attachments/assets/987182cd-2cd7-4643-b5d5-1b34bfb6619c" />
+
+### AWS CloudFront Distributions
+<img width="1920" height="924" alt="Screenshot (48)" src="https://github.com/user-attachments/assets/542d32f9-684b-4009-b360-e6b73b7b941f" />
+
+### AWS CloudFront Origin Access Control
+<img width="1920" height="969" alt="Screenshot (49)" src="https://github.com/user-attachments/assets/97cc8c47-59a4-4342-bd43-7939e64cc8cb" />
+
+### AWS IAM Roles
+<img width="1920" height="969" alt="Screenshot (50)" src="https://github.com/user-attachments/assets/7b4f694d-9396-4d2d-aac3-6deec1287780" />
+
+### AWS Amazon s3 Bucket for Static content
+<img width="1920" height="979" alt="Screenshot (51)" src="https://github.com/user-attachments/assets/862fd057-6e3c-4d44-97d0-ad858d820884" />
+
+### AWS Amazon s3 Bucket for Terraform State
+<img width="1920" height="969" alt="Screenshot (52)" src="https://github.com/user-attachments/assets/a9360166-3def-4b3e-8dff-8e668dc5ba76" />
+
+### AWS DynamoDB Tables
+<img width="1920" height="988" alt="Screenshot (53)" src="https://github.com/user-attachments/assets/c240927a-4ee3-442e-b4d4-663bdeb1d353" />
+
+---
+
 ## Future Improvements
 
 - JWT authentication
