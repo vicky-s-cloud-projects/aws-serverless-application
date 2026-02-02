@@ -224,6 +224,9 @@ Benefits:
 ### AWS Amazon s3 Bucket for Terraform State
 <img width="1920" height="969" alt="Screenshot (52)" src="https://github.com/user-attachments/assets/a9360166-3def-4b3e-8dff-8e668dc5ba76" />
 
+### AWS API Gateways
+<img width="1920" height="968" alt="Screenshot (54)" src="https://github.com/user-attachments/assets/591f1c65-d0d6-4cd6-a6cf-b4c469d00b74" />
+
 ### AWS DynamoDB Tables
 <img width="1920" height="988" alt="Screenshot (53)" src="https://github.com/user-attachments/assets/c240927a-4ee3-442e-b4d4-663bdeb1d353" />
 
