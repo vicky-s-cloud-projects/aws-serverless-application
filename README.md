@@ -19,15 +19,25 @@ Everything is deployed automatically through GitHub Actions.
 ## High-Level Architecture
 
 User Browser
-|
+  
+  |
+
 CloudFront (CDN)
-|
+
+  |
+  
 S3 Static Website (React Build)
-|
+  
+  |
+  
 API Gateway (HTTP API)
-|
+  
+  |
+
 Lambda Functions (Signup / Login / Events / Create Event)
-|
+  
+  |
+
 DynamoDB (users + events tables) 
 
 
@@ -154,29 +164,6 @@ Benefits:
 
 ---
 
-## Repository Structure
-
-├── frontend/
-│ └── frontend/ # React app
-├── backend_lambda/
-│ ├── signup/
-│ ├── login/
-│ ├── get_events/
-│ └── create_event/
-├── terraform/
-│ ├── provider.tf
-│ ├── iam.tf 
-│ ├── lambda.tf
-│ ├── dynamodb.tf
-│ ├── apigateway.tf
-│ ├── cloudfront.tf
-│ └── outputs.tf
-└── .github/workflows/
-└── deploy.yml
-
-
----
-
 ## Security Considerations
 
 - IAM roles scoped for Lambda
@@ -226,6 +213,7 @@ Benefits:
 ## Author
 
 Vivek Challa 
+
 Cloud / DevOps Engineering Portfolio Project
 
 ---
