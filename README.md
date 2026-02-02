@@ -40,6 +40,10 @@ Lambda Functions (Signup / Login / Events / Create Event)
 
 DynamoDB (users + events tables) 
 
+---
+
+## Architecture Diagram
+<img width="2042" height="884" alt="serverless-app (1)" src="https://github.com/user-attachments/assets/42eb658f-899a-4779-bb36-f8406de46c8b" />
 
 ---
 
