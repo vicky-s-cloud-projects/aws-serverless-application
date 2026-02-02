@@ -1,82 +1,236 @@
-# Event Booking Web Application 
+# Serverless Event Booking Platform on AWS  
+### Built with Terraform + GitHub Actions + React + Lambda
 
-* Backend deployment - https://ticket-a8ez.onrender.com
-* Frontend deployment - https://ticket-booking-app-iklx.vercel.app/
+This project is a **production-style serverless web application** deployed entirely on AWS using Infrastructure as Code and automated CI/CD.
 
-## Description:
+It demonstrates how to design, provision, deploy, and operate a full-stack cloud-native system using modern DevOps practices.
 
-The Event Booking Web Application is a modern, user-friendly platform that simplifies event discovery, booking, and management. This open-source project is designed for event organizers and attendees alike, providing a seamless and efficient experience. 
+The application allows users to:
 
-## Tech Stack:
-* HTML
-* CSS
-* JavaScript
-* React.JS
-* Node.JS
-* MongoDB
-* Vercel
-* Render
-* GitHub
+- Sign up and log in
+- Create events
+- View all events
+- Manage their dashboard
 
-**Features:**
+Everything is deployed automatically through GitHub Actions.
 
-1. **User Authentication:** Secure user registration and login with token-based authentication.
+---
 
-2. **Dashboard:** A personalized dashboard for users, displaying upcoming events, user profiles, and quick navigation options.
+## High-Level Architecture
 
-3. **Event Discovery:** Easily explore events by type, location, and date, complete with detailed event information.
-
-4. **Ticket Booking:** Streamlined ticket booking process with instant confirmation.
-
-5. **Event Creation:** Event organizers can create and publish events with a user-friendly form.
-
-6. **Pop-up Notifications:** Instant feedback on successful event bookings and user profile updates.
-
-7. **Editable Profiles:** Users can manage and update their profile information at any time.
-
-8. **Security:** Robust security measures, including token-based authentication and data encryption, ensure user data remains protected.
-
-9. **Responsive Design:** The application is fully responsive, offering a seamless experience on various devices.
-
-10. **User-Friendly Interface:** A clean and intuitive UI design enhances the overall user experience.
-
-11. **Event Management:** Organizers can easily view and manage their events, along with real-time updates and analytics.
-
-12. **Loading Indicators:** Visual loading indicators provide feedback during data retrieval and submission.
-
-**Getting Started:**
-
-1. Clone the repository to your local machine.
-
-2. Install the required dependencies using `npm install`.
-
-3. Configure the backend API URL in the frontend code to match your server's address.
-
-4. Run the application using `npm start`.
-
-5. Open your web browser and navigate to `http://localhost:3000` to access the application.
-
-## Contributing:**
-
-I welcome contributions from the community to improve and enhance this Event Booking Web Application. If you'd like to contribute, please follow these steps:
-
-1. Fork the repository and create a new branch.
-
-2. Make your desired changes and ensure that the application is running correctly.
-
-3. Commit your changes and create a pull request.
-
-4. Provide detailed information about the changes you've made and why they are necessary.
-
-**License:**
-
-This project is open-source and available under the MIT License. Feel free to use and modify the code to meet your specific needs.
-
-**Author:**
-
-- [Mayank Arya]
+User Browser
+|
+CloudFront (CDN)
+|
+S3 Static Website (React Build)
+|
+API Gateway (HTTP API)
+|
+Lambda Functions (Signup / Login / Events / Create Event)
+|
+DynamoDB (users + events tables) 
 
 
-**Acknowledgments:**
+---
 
-We would like to express our gratitude to the open-source community and the various libraries and tools that have contributed to the development of this project. Thank you for helping us create an efficient and user-friendly Event Booking Web Application.
+## ☁️ AWS Services Used
+
+- Amazon S3 – Frontend hosting  
+- Amazon CloudFront – CDN + HTTPS  
+- AWS Lambda – Serverless backend  
+- API Gateway – REST endpoints  
+- DynamoDB – NoSQL database  
+- IAM – Security and permissions  
+- Terraform – Infrastructure as Code  
+- GitHub Actions – CI/CD automation  
+
+---
+
+## ❓ Why Serverless?
+
+Serverless was chosen because:
+
+### ✅ No server management
+No EC2 instances, no patching, no scaling concerns.
+
+### ✅ Automatic scaling
+Lambda scales automatically based on demand.
+
+### ✅ Pay-per-use model
+Only pay when functions are invoked.
+
+### ✅ Highly available by default
+AWS manages availability zones and redundancy.
+
+### ✅ Faster development
+Focus stays on application logic instead of infrastructure.
+
+This architecture mirrors what many modern startups and SaaS platforms use for MVPs and lightweight production systems.
+
+---
+
+## Why an Event Booking Application?
+
+An event booking platform represents a **real-world business workflow**:
+
+- User authentication
+- CRUD operations
+- Data persistence
+- Frontend + backend interaction
+
+It allows demonstration of:
+
+- Auth flows
+- API design
+- Database integration
+- Frontend consumption of APIs
+- End-to-end CI/CD
+
+This makes it far more realistic than a simple “hello world” project.
+
+---
+
+## Why AWS Free Tier Resources?
+
+This project intentionally uses **AWS Free Tier–compatible services**:
+
+- Lambda
+- DynamoDB (on-demand)
+- S3
+- API Gateway
+- CloudFront
+
+Reasons:
+
+### Cost efficiency
+Demonstrates how to build real systems with minimal spend.
+
+### Practical for learning
+Shows how startups prototype without large cloud budgets.
+
+### Recruiter friendly
+Anyone can clone and reproduce this setup.
+
+Paid services (RDS, EKS, ALB) were avoided to keep the project accessible.
+
+---
+
+## CI/CD Pipeline (GitHub Actions)
+
+On every push to `main`:
+
+1. Lambda functions are packaged
+2. Terraform initializes remote S3 backend
+3. Infrastructure is provisioned or updated
+4. React frontend is built
+5. Build artifacts are uploaded to S3
+6. CloudFront cache is invalidated
+
+No manual deployments are required.
+
+This simulates a real DevOps production workflow.
+
+---
+
+## Infrastructure as Code (Terraform)
+
+All AWS resources are defined declaratively:
+
+- IAM roles
+- Lambda functions
+- API Gateway routes
+- DynamoDB tables
+- S3 bucket
+- CloudFront distribution
+- Origin Access Control
+- Terraform remote state (S3 backend)
+
+Benefits:
+
+- Reproducible deployments
+- Version-controlled infrastructure
+- Disaster recovery
+- Consistency across environments
+
+---
+
+## Repository Structure
+
+├── frontend/
+│ └── frontend/ # React app
+├── backend_lambda/
+│ ├── signup/
+│ ├── login/
+│ ├── get_events/
+│ └── create_event/
+├── terraform/
+│ ├── provider.tf
+│ ├── iam.tf 
+│ ├── lambda.tf
+│ ├── dynamodb.tf
+│ ├── apigateway.tf
+│ ├── cloudfront.tf
+│ └── outputs.tf
+└── .github/workflows/
+└── deploy.yml
+
+
+---
+
+## Security Considerations
+
+- IAM roles scoped for Lambda
+- Origin Access Control prevents direct S3 access
+- CloudFront serves frontend securely
+- Secrets stored in GitHub Actions Secrets
+- CORS configured for browser access
+
+---
+
+## What This Project Demonstrates
+
+- Serverless architecture design
+- Terraform remote state management
+- CI/CD pipelines
+- CloudFront + S3 hosting
+- Lambda + API Gateway backend
+- DynamoDB integration
+- Real-world debugging (CORS, IAM, Terraform drift, CI failures)
+
+---
+
+## Future Improvements
+
+- JWT authentication
+- API authorization with Lambda Authorizers
+- Input validation layers
+- CloudWatch monitoring & alarms
+- Terraform modules
+- OIDC authentication for GitHub Actions
+- Separate environments (dev/stage/prod)
+- WAF integration
+- Structured logging
+
+---
+
+## Key Learnings
+
+- Terraform state management is critical in CI
+- IAM permissions often cause deployment failures
+- CORS must be handled explicitly in serverless APIs
+- Frontend environment variables must be injected during build
+- Cloud-native systems require automation to remain maintainable
+
+---
+
+## Author
+
+Vivek Challa 
+Cloud / DevOps Engineering Portfolio Project
+
+---
+
+
+
+
+
